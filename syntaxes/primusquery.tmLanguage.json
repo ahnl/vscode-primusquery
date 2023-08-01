@@ -1,0 +1,270 @@
+{
+	"name": "PrimusQuery",
+	"scopeName": "source.primusquery",
+	"patterns": [
+		{
+			"include": "#conditions"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"name": "comment.line.double-slash.primusquery",
+			"begin": "^(//)",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.definition.comment.primusquery"
+				}
+			},
+			"end": "(\\n|$)",
+			"contentName": "comment.content.primusquery"
+		}
+	],
+	"repository": {
+		"conditions": {
+			"patterns": [
+				{
+					"name": "meta.primusquery.conditional",
+					"match": "(#IF{([^\n]*)})[.\n]*(#ENDIF)?",
+					"captures": {
+						"1": {
+							"name": "keyword.control.conditional.if.primusquery"
+						},
+						"2": {
+							"patterns": [
+								{
+									"include": "#data"
+								}
+							]
+						},
+						"3": {
+							"name": "keyword.control.conditional.endif.primusquery"
+						}
+					}
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"match": "(\\$DATE)",
+					"name": "support.function.primusquery"
+				},
+				{
+					"match": "(%p)",
+					"captures": {
+						"1": {
+							"name": "variable.other.constant.primusquery"
+						}
+					}
+				},
+				{
+					"match": "(#SEARCH|#SORT) ([^\n]*)?",
+					"captures": {
+						"1": {
+							"name": "keyword.control.primusquery"
+						},
+						"2": {
+							"patterns": [
+								{
+									"match": "(AND|OR)",
+									"captures": {
+										"1": {
+											"name": "keyword.operator.logical.primusquery"
+										}
+									}
+								},
+								{
+									"include": "#data"
+								}
+							]
+						}
+					}
+				},
+				{
+					"match": "(#(USER|PASS)) ([^\n]*)?",
+					"captures": {
+						"1": {
+							"name": "keyword.control.primusquery"
+						},
+						"3": {
+							"patterns": [
+								{
+									"match": "file:",
+									"name": "support.type.file.primusquery"
+								}
+							],
+							"name": "string.primusquery"
+						}
+					}
+				},
+				{
+					"match": "(#(PORT)) (\\d+)?",
+					"captures": {
+						"1": {
+							"name": "keyword.control.primusquery"
+						},
+						"3": {
+							"name": "constant.numeric.primusquery"
+						}
+					}
+				},
+				{
+					"match": "(#CONVERTSTRINGS )([^\n]*)?",
+					"captures": {
+						"1": {
+							"name": "keyword.control.primusquery"
+						},
+						"2": {
+							"patterns": [
+								{
+									"match": "([^\n]+?)(,)?",
+									"captures": {
+										"1": {
+											"name": "string.primusquery"
+										}
+									}
+								},
+								{
+									"include": "#data"
+								}
+							]
+						}
+					}
+				},
+				{
+					"match": "(#TABLE_LOOP_START),([^\n]*)?",
+					"captures": {
+						"1": {
+							"name": "keyword.control.primusquery"
+						},
+						"2": {
+							"patterns": [
+								{
+									"include": "#data"
+								}
+							]
+						}
+					}
+				},
+				{
+					"match": "(#DATA)\\{(.+?)\\}",
+					"captures": {
+						"1": {
+							"name": "keyword.control.primusquery"
+						},
+						"2": {
+							"patterns": [
+								{
+									"match": "(SPLIT|UCASE|LCASE|CPSTR|DATEF|COUNT|NUMBF|CHROK|CHRRM|DATAF|REPLC)",
+									"captures": {
+										"1": {
+											"name": "support.function.primusquery"
+										}
+									}
+								},
+								{
+									"match": "(CDCNT)",
+									"captures": {
+										"1": {
+											"name": "variable.other.constant.primusquery"
+										}
+									}
+								},
+								{
+									"include": "#data"
+								}
+							]
+						}
+					}
+				},
+				{
+					"match": "(#(HOST|PORT|USER|PASS|STRICT|OUTPUT|CHARSET|NOBOM|LINEBREAK|HEADER_START|HEADER_STOP|FOOTER_START|FOOTER_STOP|DATABASE|SORT|SEARCH|DATA|IF|ELSE|ENDIF|ELSEIF|LOOP_START_SORTED_HISTORY|LOOP_STOP_SORTED_HISTORY|LOOP_START_SORTED|LOOP_STOP_SORTED|LANGUAGE|LINE_SEPARATOR|CARDCOUNT|ERRORFILE|LINE_START|LINE_STOP|CONVERTSTRINGS|JSON|ENDJSON|XML|ENDXML|CSV|ENDCSV|AVG|SUM|COUNT|ATTENDANCE_LOOP_START|ATTENDANCE_LOOP_STOP|LOOP_START|LOOP_STOP|TABLE_LOOP_START|TABLE_LOOP_STOP))( [^\n]*)?",
+					"captures": {
+						"1": {
+							"name": "keyword.control.primusquery"
+						},
+						"3": {
+							"name": "string.primusquery"
+						}
+					}
+				},
+				{
+					"match": "(^Field)( .*)?",
+					"captures": {
+						"1": {
+							"name": "keyword.control.in.primusquery"
+						},
+						"2": {
+							"patterns": [
+								{
+									"match": "(REMAP )\\((.*)\\)",
+									"captures": {
+										"1": {
+											"name": "keyword.control.in.primusquery"
+										},
+										"2": {
+											"patterns": [
+												{
+													"match": "([^/]+)",
+													"captures": {
+														"1": {
+															"name": "string.remap.primusquery"
+														}
+													}
+												}
+											]
+										}
+									}
+								},
+								{
+									"include": "#data"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		"data": {
+			"patterns": [
+				{
+					"match": "(F[0-9]+)",
+					"captures": {
+						"1": {
+							"name": "support.function.primusquery"
+						}
+					}
+				},
+				{
+					"match": "([KV][0-9]+)",
+					"captures": {
+						"1": {
+							"name": "variable.other.constant.primusquery"
+						}
+					}
+				},
+				{
+					"match": "(B[01])",
+					"captures": {
+						"1": {
+							"name": "variable.other.constant.primusquery"
+						}
+					}
+				},
+				{
+					"match": "(\"[^\n]*?\")",
+					"captures": {
+						"1": {
+							"name": "string.primusquery"
+						}
+					}
+				},
+				{
+					"match": "([0-9]+)",
+					"name": "constant.numeric.primusquery"
+				}
+			]
+		}
+	}
+}

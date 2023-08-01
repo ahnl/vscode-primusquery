@@ -1,0 +1,31 @@
+{
+  "name": "primusquery",
+  "displayName": "PrimusQuery-kielituki",
+  "icon": "icons/icon.png",
+  "publisher": "Mikael Hannolainen",
+  "description": "",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "primusquery",
+      "aliases": ["PrimusQuery", "primusquery"],
+      "extensions": [".pq",".primusquery"],
+      "configuration": "./language-configuration.json",
+      "icon": {
+        "dark": "./icons/primusquery.svg",
+        "light": "./icons/primusquery.svg"
+      }
+    }],
+    "grammars": [{
+      "language": "primusquery",
+      "scopeName": "source.primusquery",
+      "path": "./syntaxes/primusquery.tmLanguage.json"
+    }]
+  }
+}

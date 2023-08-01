@@ -1,0 +1,41 @@
+{
+    "comments": {
+        // symbol used for single line comment. Remove this entry if your language does not support line comments
+        "lineComment": "//",
+        // symbols used for start and end a block comment. Remove this entry if your language does not support block comments
+        "blockComment": [ "/*", "*/" ]
+    },
+    // symbols used as brackets
+    "brackets": [
+        ["{", "}"],
+        ["[", "]"],
+        ["(", ")"]
+    ],
+    // symbols that are auto closed when typing
+    "autoClosingPairs": [
+        ["{", "}"],
+        ["[", "]"],
+        ["(", ")"],
+        ["\"", "\""],
+        ["'", "'"],
+        ["#IF", "#ENDIF"],
+        ["#HEADER_START", "#HEADER_STOP"],
+        ["#FOOTER_START", "#FOOTER_STOP"],
+        ["#LOOP_START", "#LOOP_STOP"],
+        ["#LOOP_START_SORTED", "#LOOP_STOP_SORTED"],
+        ["#LOOP_START_SORTED_HISTORY", "#LOOP_STOP_SORTED_HISTORY"],
+        ["#LINE_START", "#LINE_STOP"],
+        ["#ATTENDANCE_LOOP_START", "#ATTENDANCE_LOOP_STOP"],
+        ["#JSON", "#ENDJSON"],
+        ["#XML", "#ENDXML"],
+        ["#CSV", "#ENDCSV"]
+    ],
+    // symbols that can be used to surround a selection
+    "surroundingPairs": [
+        ["{", "}"],
+        ["[", "]"],
+        ["(", ")"],
+        ["\"", "\""],
+        ["'", "'"]
+    ]
+}
